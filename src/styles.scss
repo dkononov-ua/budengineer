@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+@use "app/style/presets/" as *;
+@use "app/style/mixins/" as *;
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// html {
+//   color-scheme: light dark;
+// }
+
+html,
+body {
+  font-family: $font-main;
+  scroll-behavior: smooth;
+
+}
+
+button {
+  border: none;
+}
+
+body {
+  background-color: $color-white;
+  @include s1-s3 {
+    background-color: $color-white;
+  }
+}
+
+a {
+  // padding: 0.5em 1em;
+  // margin: 5px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: $font-main;
+  color: $color-accent;
+  text-decoration: none;
+  // display: block;
+  // transition: 0.5s ease;
+
+  // &:hover {
+  //   color: $color-accent;
+  //   font-weight: bold;
+  //   transform: scale(1.1);
+  // }
+
+  // .fab {
+  //   transform: scale(1.4);
+  //   transition: transform 2s;
+  // }
+}
+
+.img-fluid {
+  overflow: hidden;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.fa-solid,
+.fa-regular {
+  color: $color-icon;
+  font-size: 25px;
+  transition: transform 1s;
+  @include s1-s3 {
+    font-size: 20px;
+  }
+}
+
+@media print {
+  body {
+    background-color: transparent;
+  }
+}
+

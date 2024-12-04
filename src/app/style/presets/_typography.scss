@@ -1,0 +1,156 @@
+@use "skin" as *;
+@use "variables" as *;
+
+p {
+  color: $color-text;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: $color-text;
+  font-family: $font-main;
+}
+
+h4,
+h5 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 18px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  max-height: 30vh;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.italic {
+  font-style: italic !important;
+}
+
+.bg-accent {
+  background-color: $color-accent !important;
+}
+
+.bg-red {
+  background-color: $color-red !important;
+}
+
+.bg-blue {
+  background-color: $color-blue !important;
+}
+
+.bg-yellow {
+  background-color: $color-yellow !important;
+}
+
+.bg-green {
+  background-color: $color-green !important;
+}
+
+.bg-white {
+  background-color: $color-white !important;
+}
+
+.bg-gray {
+  background-color: $color-gray !important;
+}
+
+.bg-dark {
+  background-color: $color-dark !important;
+}
+
+.accent {
+  color: $color-accent !important;
+}
+
+.green {
+  color: green !important;
+}
+
+.bold {
+  font-weight: 600 !important;
+}
+
+.thin {
+  font-weight: 300 !important;
+}
+
+.dark {
+  color: $color-text !important;
+}
+
+.gray {
+  color: $color-gray !important;
+}
+
+.white {
+  color: $color-white !important;
+}
+
+.blue {
+  color: $color-blue !important;
+}
+
+.t-min {
+  color: $color-text;
+  font-size: 12px;
+}
+
+.t-med {
+  color: $color-text;
+  font-size: 14px;
+}
+
+.t-lar-xx {
+  color: $color-text;
+  font-size: 25px;
+}
+
+.t-lar-x {
+  color: $color-text;
+  font-size: 20px;
+}
+
+.t-lar {
+  color: $color-text;
+  font-size: 16px;
+}
+
+.t-s {
+  text-align: start;
+}
+
+.t-c {
+  text-align: center;
+}
+
+.t-e {
+  text-align: end;
+}

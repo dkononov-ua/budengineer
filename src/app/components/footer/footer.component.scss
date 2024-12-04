@@ -1,0 +1,46 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.footer-container {
+  @include flex-box-center;
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: $color-dark;
+  color: $color-white;
+}
+
+.logo img {
+  max-width: 150px;
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.2);
+    @include box-shadow;
+    padding: 10px;
+    border-radius: 20px;
+  }
+}
+
+.contact-info,
+.social-links {
+  @include flex-box-center;
+  gap: 15px;
+}
+
+.contact-info a,
+.social-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.fa-brands,
+.fa-solid,
+.fa-regular {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.social-links a:hover img {
+  opacity: 0.8;
+}
+

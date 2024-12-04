@@ -1,0 +1,22 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.card-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.card-wrapper {
+  width: max-content;
+  display: flex;
+  height: 100%;
+  padding: 10px;
+}
+
+.card {
+  width: 400px;
+  transition: 0.5s;
+  &:hover {
+    transform: scale(0.95);
+  }
+}

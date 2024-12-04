@@ -1,0 +1,122 @@
+@use "../presets" as *;
+@use "../mixins/mixins-media";
+
+@mixin blurred-background($color, $alpha: 0.831, $blur: 10px) {
+  background-color: rgba($color, $alpha); // Додаємо прозорість
+  backdrop-filter: blur($blur); // Застосовуємо розмиття
+  -webkit-backdrop-filter: blur($blur); // Підтримка для Safari
+}
+
+@mixin container {
+  max-width: $ul;
+  margin: auto;
+  padding-right: $gap;
+  padding-left: $gap;
+}
+
+@mixin flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-box-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-box-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin flex-box-column {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+@mixin flex-box-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+@mixin text-shortener {
+  display: block;
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin hover {
+  &:hover {
+    transition: 1s;
+    // background-color: $color-accent;
+    .fa-solid,
+    .fa-regular,
+    .t-min {
+      transform: scale(1.05);
+      color: $color-accent;
+      box-shadow: -3px 3px 20px -10px ($color-accent, 40%);
+    }
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+@mixin unlist($m: 0, $p: 0) {
+  margin: $m;
+  padding: $p;
+  list-style: none;
+}
+
+@mixin abs-position($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin pos-abs-l() {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin box-shadow {
+  box-shadow: -3px 3px 20px -10px $color-gray;
+}
+
+@mixin box-shadow-a {
+  box-shadow: -3px 3px 20px -10px $color-accent;
+}
+
+@mixin box-shadow-i {
+  box-shadow: inset -3px 3px 20px -10px $color-gray;
+}
+
+@mixin active-icon {
+  background-color: $color-white-always;
+  .fa-solid,
+  .fa-regular {
+    transition: 1s;
+    color: $color-accent;
+    filter: drop-shadow(0px 0px 10px $color-accent);
+  }
+}

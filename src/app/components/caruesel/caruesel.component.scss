@@ -1,0 +1,16 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.carousel {
+  width: 100%;
+  max-height: 50vh;
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+  @include s1-s3 {
+    height: 100%;
+  }
+}
