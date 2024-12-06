@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { PricePipe } from '../../pipe/price.pipe';
 
 @Component({
   selector: 'app-tools',
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.scss'],
-  imports: [CommonModule],
-
+  providers: [PricePipe],
+  standalone: false, // компонент є standalone
 })
 export class ToolsComponent implements OnInit {
 

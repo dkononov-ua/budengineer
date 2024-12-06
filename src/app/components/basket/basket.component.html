@@ -1,0 +1,47 @@
+<!-- <div class="services">
+  <div *ngFor="let category of categories" class="category border-top">
+    <h3>{{ category.category }}</h3>
+    <div *ngFor="let service of category.services" class="service-item">
+      <label>
+        <input
+          type="checkbox"
+          [checked]="isServiceSelected(service)"
+          (change)="toggleSelection(service)"
+        />
+        <img [src]="service.imageUrl" alt="{{ service.name }}" />
+        <div class="service-info">
+          <h4>{{ service.name }}</h4>
+          <p>{{ service.shortDescription }}</p>
+          <span class="price">{{ service.price | price: 'USD' }}</span>
+        </div>
+      </label>
+    </div>
+  </div>
+</div> -->
+<div class="basket-container p-2" [ngClass]="{'open': basketMenu}">
+  <div class="basket-wrapper">
+    <button class="btn-close w-100" mat-button [mat-dialog-close]="true" (click)="closeBasket()"></button>
+    <h3 class="t-c">Кошик:</h3>
+    <ul class="basket">
+      <li *ngFor="let service of selectedServices" class="basket-item">
+        <img [src]="service.imageUrl" alt="{{ service.name }}" />
+        <div class="basket-info">
+          <h4>{{ service.name }}</h4>
+          <p>{{ service.shortDescription }}</p>
+          <span class="price">{{ service.price | price: 'USD' }}</span>
+        </div>
+        <button class="remove-btn" (click)="toggleSelection(service)">Remove</button>
+      </li>
+      <li *ngIf="selectedServices.length === 0" class="w-100">
+        <div class="basket-info">
+          <h4>Ви не обрали жодної послуги...</h4>
+          <p>Оберіть ту послугу яка вам потрібна і вона буде тут.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-primary w-100 mt-2" (click)="clearBasket()">Очистити</button>
+    <button class="btn btn-primary w-100 mt-2 bg-green">Замовити</button>
+  </div>
+</div>

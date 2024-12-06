@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",    // або "node16" / "nodenext" в залежності від вашого проєкту
+    "target": "ES6",
+    "module": "commonjs",          // або "ESNext" якщо це модуль ES6
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

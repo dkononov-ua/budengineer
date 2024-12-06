@@ -4,6 +4,8 @@ import { CheckDeviceService } from '../../services/checkDevice.service';
 @Component({
   selector: 'app-caruesel',
   templateUrl: './caruesel.component.html',
+  standalone: false, // компонент є standalone
+
   styleUrls: ['./caruesel.component.scss']
 })
 export class CarueselComponent implements OnInit {

@@ -1,4 +1,9 @@
 @use "skin" as *;
+@use "variables" as *;
+
+.btn {
+  font-family: $font-main;
+}
 
 .hover {
   transition: 0.4s;

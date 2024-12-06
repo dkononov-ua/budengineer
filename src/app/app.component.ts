@@ -1,30 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NavComponent } from "./components/nav/nav.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { CommonModule } from '@angular/common';
 import { CheckDeviceService } from './services/checkDevice.service';
 import { Location } from '@angular/common';
 import { animations } from '../app/interface/animation';
-import { CarueselComponent } from "./components/caruesel/caruesel.component";
-import { ToolsComponent } from "./components/tools/tools.component";
-import { OurServicesComponent } from "./components/our-services/our-services.component";
+import { FirebaseDataService } from './config/firebaseData.service';
+import { ToogleService } from './services/toogle.service';
+import { BasketComponent } from "./components/basket/basket.component";
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    CommonModule,
-    RouterModule,
-    NavComponent,
-    FooterComponent,
-    CarueselComponent,
-    ToolsComponent,
-    OurServicesComponent,
-],
-  providers: [CheckDeviceService],
   templateUrl: './app.component.html',
-  standalone: true,
   styleUrl: './app.component.scss',
+  standalone: false, // компонент є standalone
   animations: [
     animations.bot,
     animations.bot3,
@@ -73,15 +60,41 @@ export class AppComponent {
   get currentImage() {
     return this.images[this.currentImageIndex];
   }
+  posts: any[] = [];
+  basketMenu: boolean = false;
 
   constructor(
     private location: Location,
     private checkDeviceService: CheckDeviceService,
+    private firebaseDataService: FirebaseDataService,
+    private toogleService: ToogleService,
+    private dialog: MatDialog,
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.checkDeviceService.checkIsMobile();
     this.getCheckDevice();
+    this.getPosts();
+  }
+
+  // підписка на статус корзини
+  async getBasketMenu() {
+    console.log('getBasketMenu')
+    this.toogleService.toogleBasket$.subscribe((status: boolean) => {
+      this.basketMenu = status;
+      if (this.basketMenu) {
+      }
+      console.log(this.basketMenu)
+    });
+  }
+
+  async getPosts(): Promise<any> {
+    try {
+      const response: any = await this.firebaseDataService.fetchData('posts');
+      console.log(response)
+    } catch (error) {
+      console.error('Error loading posts:', error);
+    }
   }
 
   // підписка на шлях до серверу
