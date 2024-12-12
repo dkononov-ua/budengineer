@@ -1,0 +1,26 @@
+<div class="wrapper-img p-2" (mouseenter)="pauseAutoPlay()" (mouseleave)="resumeAutoPlay()">
+  <h2 class="white t-c">Процес виконання робіт по виконавчій документації</h2>
+  <!-- Відображення поточного зображення -->
+  <div class="caruesel-item" [@appearance] *ngIf="toogleCarusel && carusel.length > 0">
+    <img *ngIf="toogleCarusel" class="img-fluid" [src]="imgPath + carusel[currentIndex].png" alt="img-house"
+      loading="lazy">
+    <div class="description-box">
+      <div class="description t-lar bold"> {{ carusel[currentIndex].name }} </div>
+      <div class="description t-min"> {{ carusel[currentIndex].description }} </div>
+    </div>
+  </div>
+
+  <!-- Кнопки навігації -->
+  <div *ngIf="carusel.length > 1">
+    <!-- <button *ngIf="currentIndex > 0" class="prev-img" (click)="prevItem()">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button> -->
+    <div class="indicator">
+      <span *ngFor="let item of carusel; let i = index" [class.active]="i === currentIndex" (click)="goToItem(i)">
+      </span>
+    </div>
+    <!-- <button *ngIf="currentIndex < carusel.length - 1" class="next-img" (click)="nextItem()">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button> -->
+  </div>
+</div>

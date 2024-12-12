@@ -23,7 +23,7 @@ export class BasketDataService {
 
     // Оновлюємо поточний стан
     this.selectedServicesSubject.next(this.selectedServices);
-    console.log(this.selectedServices);
+    // console.log(this.selectedServices);
   }
 
   // Перевіряє, чи вибрана послуга

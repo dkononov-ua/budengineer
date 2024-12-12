@@ -35,51 +35,64 @@ export class OurServicesComponent implements OnInit {
   categories = services;
   filteredCategories = services; // Відфільтровані категорії
   searchQuery = ''; // Рядок пошуку
-  // selectedService: any = null; // Вибрана послуга
   selectedServices: any[] = [];
+  currentCategoryIndex = 0; // Індекс вибраної категорії
+  currentServiceIndex = 0; // Індекс вибраного сервісу в категорії
+
+  get visibleServices() {
+    const currentCategory = this.services[this.currentCategoryIndex];
+    const services = currentCategory.services;
+    // Для трьох карток
+    if (window.innerWidth < 600) {
+      const leftIndex = (this.currentServiceIndex - 1 + services.length) % services.length;
+      const rightIndex = (this.currentServiceIndex + 1) % services.length;
+      return [services[leftIndex], services[this.currentServiceIndex], services[rightIndex]];
+    }
+
+    // Для п'яти карток
+    const leftIndex1 = (this.currentServiceIndex - 2 + services.length) % services.length;
+    const leftIndex2 = (this.currentServiceIndex - 1 + services.length) % services.length;
+    const rightIndex1 = (this.currentServiceIndex + 1) % services.length;
+    const rightIndex2 = (this.currentServiceIndex + 2) % services.length;
+
+    return [
+      services[leftIndex1],
+      services[leftIndex2],
+      services[this.currentServiceIndex],
+      services[rightIndex1],
+      services[rightIndex2],
+    ];
+  }
+
+  changeCenterService(index: number) {
+    const servicesLength = this.services[this.currentCategoryIndex].services.length;
+    if (index === 0 || index === 1) {
+      this.currentServiceIndex =
+        (this.currentServiceIndex - (2 - index) + servicesLength) % servicesLength;
+    } else if (index === 3 || index === 4) {
+      this.currentServiceIndex =
+        (this.currentServiceIndex + (index - 2)) % servicesLength;
+    }
+  }
+
+
+  changeCategoryID(index: number) {
+    this.currentCategoryIndex = index;
+    this.currentServiceIndex = 0; // Скидаємо до першого сервісу
+  }
+
 
   constructor(private basketService: BasketDataService) { }
 
   ngOnInit() {
-    console.log(services)
+    this.getBasketData();
   }
 
-  // Пошук послуг
-  onSearch() {
-    const query = this.searchQuery.toLowerCase();
-
-    if (query) {
-      this.filteredCategories = this.services
-        .map(category => ({
-          ...category,
-          services: category.services.filter(service =>
-            service.name.toLowerCase().includes(query)
-          )
-        }))
-        .filter(category => category.services.length > 0);
-    } else {
-      this.filteredCategories = this.services;
-    }
-  }
-
-  // Очищення пошуку
-  clearSearch() {
-    this.searchQuery = '';
-    this.filteredCategories = this.services;
-  }
-
-  toggleServiceSelection(service: any): void {
-    const index = this.selectedServices.findIndex(s => s.name === service.name);
-    if (index > -1) {
-      // Якщо послуга вже вибрана, видаляємо її
-      this.selectedServices.splice(index, 1);
-    } else {
-      // Якщо послуга не вибрана, додаємо її
-      this.selectedServices.push(service);
-    }
-    this.basketService.toggleServiceSelection(service);
-
-    // console.log(this.selectedServices)
+  // підписка на обрані послуги
+  async getBasketData() {
+    this.basketService.getSelectedServices().subscribe((services) => {
+      this.selectedServices = services;
+    });
   }
 
   isSelected(service: any): boolean {
@@ -88,29 +101,19 @@ export class OurServicesComponent implements OnInit {
 
   // Викликає метод toggleServiceSelection
   toggleSelection(service: any): void {
+    // console.log(service)
     this.basketService.toggleServiceSelection(service);
   }
+
+
   // Перевіряє, чи вибрано послугу
   isServiceSelected(service: any): boolean {
     return this.basketService.isSelected(service);
   }
 
-  // // Отримує всі вибрані послуги
-  // getBasket(): any[] {
-  //   return this.basketService.getSelectedServices();
-  // }
-
   // Очищує корзину
   clearBasket(): void {
     this.basketService.clearBasket();
   }
-
-
-  // // Вибір послуги
-  // selectService(service: any) {
-  //   this.selectedService = service;
-  //   console.log('Вибрана послуга:', service);
-  //   // Тут можна виконати додаткову дію з вибраною послугою
-  // }
 
 }

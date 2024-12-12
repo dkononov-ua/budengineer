@@ -16,7 +16,7 @@
 
 html,
 body {
-  font-family: $font-main;
+  font-family: $font-main !important;
   scroll-behavior: smooth;
 
 }

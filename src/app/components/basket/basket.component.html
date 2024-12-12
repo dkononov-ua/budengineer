@@ -19,29 +19,35 @@
   </div>
 </div> -->
 <div class="basket-container p-2" [ngClass]="{'open': basketMenu}">
-  <div class="basket-wrapper">
-    <button class="btn-close w-100" mat-button [mat-dialog-close]="true" (click)="closeBasket()"></button>
-    <h3 class="t-c">Кошик:</h3>
+  <div class="basket-wrapper p-2">
+    <h3 class="t-c sticky-top"><i class="fa-solid fa-basket-shopping"></i> Кошик:</h3>
     <ul class="basket">
       <li *ngFor="let service of selectedServices" class="basket-item">
         <img [src]="service.imageUrl" alt="{{ service.name }}" />
         <div class="basket-info">
           <h4>{{ service.name }}</h4>
           <p>{{ service.shortDescription }}</p>
-          <span class="price">{{ service.price | price: 'USD' }}</span>
+          <span class="price">{{ service.price | price: 'UAH' }}</span>
         </div>
-        <button class="remove-btn" (click)="toggleSelection(service)">Remove</button>
+        <button class="remove-btn btn-close" (click)="toggleSelection(service)"></button>
       </li>
       <li *ngIf="selectedServices.length === 0" class="w-100">
         <div class="basket-info">
           <h4>Ви не обрали жодної послуги...</h4>
-          <p>Оберіть ту послугу яка вам потрібна і вона буде тут.</p>
+          <p class="gray">Оберіть ту послугу яка вам потрібна і вона буде тут.</p>
         </div>
       </li>
     </ul>
   </div>
-  <div class="btn-group">
-    <button class="btn btn-primary w-100 mt-2" (click)="clearBasket()">Очистити</button>
-    <button class="btn btn-primary w-100 mt-2 bg-green">Замовити</button>
+  <div class="sticky-bottom">
+    <p class="w-100 t-e border-bottom">Загальна вартість: {{totalPrice | price: 'UAH'}}</p>
+    <div class="btn-group">
+      <button class="btn btn-primary" [mat-dialog-close]="true" (click)="closeBasket()"><i
+          class="fa-solid fa-xmark white"></i></button>
+      <button class="btn btn-primary bg-yellow" (click)="clearBasket()" *ngIf="selectedServices.length > 0"><i
+          class="fa-solid fa-broom white"></i></button>
+      <button class="btn btn-primary bg-green white" [disabled]="selectedServices.length === 0">Замовити <i
+          class="fa-solid fa-check pl-2 white"></i></button>
+    </div>
   </div>
 </div>

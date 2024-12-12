@@ -58,7 +58,7 @@
 .basket-container {
   background-color: $color-white;
   width: 100%;
-  height: 95vh;
+  max-height: 90vh;
   position: relative;
   display: none;
   &.open {
@@ -77,6 +77,7 @@
 .basket-item {
   display: flex;
   align-items: center;
+  position: relative;
   gap: 15px;
   margin-bottom: 10px;
   padding: 15px;
@@ -87,8 +88,9 @@
 }
 
 .basket-item img {
+  object-fit: cover;
   width: 60px;
-  height: 60px;
+  height: auto;
   border-radius: 8px;
 }
 
@@ -152,8 +154,20 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .remove-btn:hover {
   background-color: #e60000;
+}
+
+.sticky-bottom,
+.sticky-top {
+  @include flex-box-center;
+  flex-direction: column;
+  width: 100%;
+  background-color: $color-white;
+  padding: 10px;
 }

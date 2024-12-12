@@ -236,6 +236,35 @@
   }
 }
 
+.indicator {
+  position: absolute;
+  width: 100%;
+  bottom: 25px;
+  left: 0;
+  display: flex;
+  z-index: 100;
+  gap: 5px;
+  justify-content: center;
+
+  span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: $color-light-gray;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &.active {
+      background-color: $color-dark;
+    }
+
+    &:hover {
+      background-color: $color-light-gray, 20%;
+    }
+  }
+}
+
 .prev-img,
 .next-img {
   position: absolute;

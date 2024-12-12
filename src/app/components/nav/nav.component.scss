@@ -11,9 +11,17 @@
   align-items: center;
 }
 
+.breadcrumb-box {
+  @include flex-box-center;
+  @include s1-s3 {
+    flex-direction: column;
+  }
+}
+
 .navbar {
+  font-family: $font-main;
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.169) !important;
+  background-color: rgba(255, 255, 255, 0.067) !important;
   top: 0;
   left: 0;
   width: 100%;

@@ -1,0 +1,30 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.breadcrumb {
+  background: transparent;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+  font-family: $font-main;
+}
+
+.breadcrumb-item {
+  display: inline;
+  font-size: 1rem;
+}
+
+.breadcrumb-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '>';
+  padding: 0 0.5rem;
+  color: #6c757d;
+}

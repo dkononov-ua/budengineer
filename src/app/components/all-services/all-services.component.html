@@ -1,0 +1,49 @@
+
+<div class="search-container" id="conteiner0">
+  <h3 class="t-c bold mt-3">Ми надаємо такі послуги</h3>
+  <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Пошук по послугам"
+    class="form-control">
+  <button *ngIf="searchQuery" (click)="clearSearch()" class="btn btn-secondary">
+    Очистити
+  </button>
+</div>
+
+<div *ngIf="filteredCategories.length > 0; else noResults">
+  <div *ngFor="let category of filteredCategories" class="category border-top">
+    <h2 class="category-title">{{ category.category }}</h2>
+
+    <div class="services-list">
+      <div *ngFor="let service of category.services" [@appearance] (click)="toggleSelection(service)"
+        [ngClass]="{ 'select': isSelected(service), 'fly': isFlying }" class="card m-2">
+        <div class="img-box">
+          <div class="bg-blure"></div>
+          <img [src]="service.imageUrl" class="card-img-top" [alt]="service.name">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title bold">{{ service.name }}</h5>
+          <p class="card-text mt-2">{{ service.shortDescription }}</p>
+          <div class="btn-group w-100">
+            <a [routerLink]="['/services/', service.name | transliterate | truncate]"
+              [queryParams]="{ breadcrumb: service.name  }" class="btn btn-primary w-100 mt-2">
+              {{ service.btnText }}
+            </a>
+
+
+            <button class="btn btn-primary w-100 mt-2 bg-yellow" *ngIf="isSelected(service)"><i
+                class="fa-regular fa-circle-xmark white pr-2"></i>Відмінити</button>
+            <button class="btn btn-primary w-100 mt-2 bg-green" *ngIf="!isSelected(service)"><i
+                class="fa-solid fa-cart-plus white pr-2"></i>В кошик</button>
+          </div>
+          <div class="ribbon" [ngClass]="category.ribbonColor">
+            {{ service.ribbonText }}
+            <i [class]="service.ribbonIcon + ' white pl-2'"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <p class="text-center mt-4">Нічого не знайдено.</p>
+</ng-template>

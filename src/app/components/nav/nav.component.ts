@@ -46,13 +46,13 @@ export class NavComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(BasketComponent, {});
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
+      // console.log('The dialog was closed', result);
       this.toogleBasket();
     });
   }
 
   toogleBasket() {
-    console.log('toogleBasket')
+    // console.log('toogleBasket')
     this.basketStaus = !this.basketStaus;
     this.toogleService.toogleBasket(this.basketStaus);
   }

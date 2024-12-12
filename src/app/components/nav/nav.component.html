@@ -1,11 +1,10 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand white" href="#"><strong>BudEngineer</strong></a>
+    <a class="navbar-brand" [routerLink]="''"><strong>BudEngineer</strong></a>
     <div class="">
-      <button class="btn" (click)="toogleBasket()"><i class="fa-solid fa-basket-shopping"></i>
+      <button class="btn btnBasket" (click)="toogleBasket()"><i class="fa-solid fa-basket-shopping"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{selectedServices.length}}
-          <span class="visually-hidden">unread messages</span>
         </span></button>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -20,12 +19,15 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Головна</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="''">Головна</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Про нас</a>
+            <a class="nav-link" href="/specialists">Про нас</a>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/services'">Всі послуги</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
@@ -37,13 +39,19 @@
               </li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
         <form class="d-flex mt-3" role="search">
           <input class="form-control me-2" type="search" placeholder="Пошук послуг" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Пошук</button>
         </form>
+        <p class="warning bg-gray yellow p-2 mb-2 t-med mt-2"><i class="fa-solid fa-triangle-exclamation yellow"></i>
+          Корзина ще не працює, для замовлення послуг звертайтесь за телефоном 0677727447</p>
+
       </div>
     </div>
+  </div>
+  <div class="breadcrumb-box pl-2">
+    <app-breadcrumb></app-breadcrumb>
   </div>
 </nav>

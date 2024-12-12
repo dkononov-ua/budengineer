@@ -32,7 +32,20 @@ import { ToolsComponent } from './components/tools/tools.component';
 import { CheckDeviceService } from './services/checkDevice.service';
 import { ToogleService } from './services/toogle.service';
 import { PricePipe } from './pipe/price.pipe';
-
+import { HttpClientModule } from '@angular/common/http';
+import { AllServicesComponent } from './components/all-services/all-services.component';
+import { HomeComponent } from './page/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { TransliteratePipe } from './pipe/transliterate.pipe';
+import { HostServisesComponent } from './page/host-servises/host-servises.component';
+import { TruncatePipe } from './pipe/truncate.pipe';
+import { AboutServiseComponent } from './components/about-servise/about-servise.component';
+import { ProcessComponent } from './components/process/process.component';
+import { TransferComponent } from './components/transfer/transfer.component';
+import { SpecialistsComponent } from './components/specialists/specialists.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +56,16 @@ import { PricePipe } from './pipe/price.pipe';
     OurServicesComponent,
     BasketComponent,
     PricePipe,
+    TransliteratePipe,
+    TruncatePipe,
+    AllServicesComponent,
+    HomeComponent,
+    BreadcrumbComponent,
+    HostServisesComponent,
+    AboutServiseComponent,
+    ProcessComponent,
+    TransferComponent,
+    SpecialistsComponent,
   ],
 
   bootstrap: [AppComponent],
@@ -57,6 +80,7 @@ import { PricePipe } from './pipe/price.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     CommonModule,
+    HttpClientModule,
     MatSelectModule,
     MatDialogModule,
     MatSliderModule,
@@ -74,6 +98,8 @@ import { PricePipe } from './pipe/price.pipe';
     MatInputModule,
     MatFormFieldModule,
     NgOptimizedImage,
+    AppRoutingModule,
+    MatButtonModule, MatDividerModule, MatIconModule,
   ],
   providers: [
     DatePipe,

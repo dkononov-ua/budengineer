@@ -1,0 +1,13 @@
+@use "../../style/presets/" as *;
+@use "../../style/mixins/" as *;
+@use "../../style/shared.scss";
+
+.carousel {
+  width: 100%;
+}
+
+.group-copmonent {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}

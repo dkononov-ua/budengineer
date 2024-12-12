@@ -1,0 +1,14 @@
+<!-- <div class="breadcrumb-navigation">
+  <button (click)="goBack()" class="btn btn-secondary">Назад</button>
+  <button (click)="goForward()" class="btn btn-secondary">Вперед</button>
+</div> -->
+
+<nav *ngIf="breadcrumbs.length" aria-label="breadcrumb ">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+      <a *ngIf="!last" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+      <span *ngIf="last">{{ breadcrumb.label }}</span>
+    </li>
+  </ol>
+</nav>
+

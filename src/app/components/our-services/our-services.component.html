@@ -1,42 +1,41 @@
+<!-- Вибір категорії -->
 
-<div class="search-container">
-  <h3 class="t-c bold mt-3">Ми надаємо такі послуги</h3>
-  <input type="text" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Пошук по послугам"
-    class="form-control">
-  <button *ngIf="searchQuery" (click)="clearSearch()" class="btn btn-secondary">
-    Очистити
-  </button>
+<div class="d-flex jc-c al-c">
+  <mat-form-field>
+    <mat-label>Вибір категорії</mat-label>
+    <select matNativeControl required [(ngModel)]="currentCategoryIndex"
+      (change)="changeCategoryID(currentCategoryIndex)">
+      <option *ngFor="let category of services; let i = index" [value]="i">{{ category.category }}</option>
+    </select>
+  </mat-form-field>
+
+  <!-- <div class="d-flex jc-c al-c p-2 ">
+    <a [routerLink]="'/all-services'">Всі послуги</a>
+  </div> -->
 </div>
 
-<div *ngIf="filteredCategories.length > 0; else noResults">
-  <div *ngFor="let category of filteredCategories" class="category border-top">
-    <h2 class="category-title">{{ category.category }}</h2>
-
-    <div class="services-list">
-      <div *ngFor="let service of category.services" [@appearance] (click)="toggleServiceSelection(service)"
-        [ngClass]="{ 'select': isSelected(service) }" class="card m-2">
-        <div class="img-box">
-          <div class="bg-blure"></div>
-          <img [src]="service.imageUrl" class="card-img-top" [alt]="service.name">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title bold">{{ service.name }}</h5>
-          <p class="card-text mt-2">{{ service.shortDescription }}</p>
-          <div class="btn-group w-100">
-            <!-- <a href="{{ service.url }}" class="btn btn-primary w-100 mt-2">{{ service.btnText }}</a> -->
-            <button [@left] class="btn btn-primary w-100 mt-2 bg-yellow" *ngIf="isSelected(service)"><i
-                class="fa-regular fa-circle-xmark white pr-2"></i>Відмінити</button>
-          </div>
-          <div class="ribbon" [ngClass]="category.ribbonColor">
-            {{ service.ribbonText }}
-            <i [class]="service.ribbonIcon + ' white pl-2'"></i>
-          </div>
-        </div>
+<div class="card-deck">
+  <div *ngFor="let card of visibleServices; let i = index" class="card-wrapper" [ngClass]="{
+      'left-card1': i === 0,
+      'left-card': i === 1,
+      'center-card': i === 2,
+      'right-card': i === 3,
+      'right-card1': i === 4
+    }" (click)="changeCenterService(i)">
+    <div class="card-content">
+      <img [src]="card.imageUrl" alt="Card image" class="card-img" />
+      <div class="card-group p-2">
+        <h5>{{ card.name }}</h5>
+        <p class="t-min pt-2 gray">{{ card.shortDescription }}</p>
+      </div>
+      <div class="btn-group w-100 p-2">
+        <a [routerLink]="'/services'" class="btn btn-primary w-100 mt-2">Всі
+          послуги</a>
+        <!-- <button class="btn btn-primary w-100 mt-2 bg-yellow" *ngIf="isServiceSelected(card)"
+          (click)="toggleSelection(card)"><i class="fa-regular fa-circle-xmark white pr-2"></i>Відмінити</button> -->
+        <!-- <button class="btn btn-primary w-100 mt-2 bg-green" *ngIf="!isServiceSelected(card)"
+          (click)="toggleSelection(card)"><i class="fa-solid fa-cart-plus white pr-2"></i>В кошик</button> -->
       </div>
     </div>
   </div>
 </div>
-
-<ng-template #noResults>
-  <p class="text-center mt-4">Нічого не знайдено.</p>
-</ng-template>

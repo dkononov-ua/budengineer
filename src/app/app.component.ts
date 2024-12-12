@@ -91,7 +91,6 @@ export class AppComponent {
   async getPosts(): Promise<any> {
     try {
       const response: any = await this.firebaseDataService.fetchData('posts');
-      console.log(response)
     } catch (error) {
       console.error('Error loading posts:', error);
     }
