@@ -23,4 +23,4 @@ const database = getDatabase(app); // Для Realtime Database
 const storage = getStorage(app); // Для Storage
 
 // Експортуємо екземпляри
-export { app, auth, analytics, database, storage };
+export { firebaseConfig, app, auth, analytics, database, storage };

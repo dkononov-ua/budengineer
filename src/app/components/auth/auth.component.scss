@@ -1,0 +1,39 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.form-group {
+  @include flex-box-center;
+  flex-direction: column;
+  min-width: 100%;
+  max-width: 500px;
+}
+
+.container {
+  @include flex-box-center;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.btn-secondary {
+  width: 100%;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+form {
+  @include flex-box-center;
+  flex-direction: column;
+  margin: 20px 0 0 0;
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}

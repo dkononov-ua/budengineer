@@ -6,6 +6,20 @@
   margin-right: 20px;
 }
 
+.btnBasket {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  @include flex-box-center;
+  flex-wrap: nowrap;
+  img {
+    width: max-content;
+    border-radius: 10px;
+    height: 40px;
+    object-fit: cover;
+  }
+}
+
 .container-fluid {
   align-content: center;
   align-items: center;

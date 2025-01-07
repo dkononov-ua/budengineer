@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "budengineer-f2844"
-  }
+    "default": "budengineer-f2844",
+    "budengineer": "budengineer-f2844"
+  },
+  "targets": {},
+  "etags": {}
 }

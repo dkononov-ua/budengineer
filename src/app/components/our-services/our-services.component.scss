@@ -1,12 +1,39 @@
 @use "../../style/mixins/" as *;
 @use "../../style/presets/" as *;
 
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  button {
+    margin: 0 10px;
+  }
+}
+
+.btn-primary {
+  @include flex-box-center;
+  background: $color-primary;
+  color: white;
+  width: 200px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: darken($color-primary, 10%);
+  }
+}
+
 .card-deck {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 600px;
+  height: 560px;
   width: 100%;
   overflow: hidden;
 

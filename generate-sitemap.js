@@ -13,6 +13,7 @@ const routes = [
   { url: '/', priority: 1.0 },
   { url: '/services', priority: 1.0 },
   { url: '/services/all', priority: 0.5 },
+  { url: '/specialists', priority: 0.5 },
   // { url: '/home', priority: 1.0 },
   // { url: '/about-project', priority: 0.5 },
   // { url: '/blog', priority: 1.0 },

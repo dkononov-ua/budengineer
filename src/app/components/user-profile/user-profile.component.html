@@ -1,0 +1,45 @@
+<div class="container-content w-100 mt-3" *ngIf="autorization">
+  <form class="content-wrapper w-100" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <mat-card class="d-flex t-c p-2">
+      <mat-card-title>Профіль користувача</mat-card-title>
+      <mat-card-content>
+        <div class="form-group mt-2">
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Ім'я</mat-label>
+            <input matInput formControlName="firstName" placeholder="Введіть ім'я" />
+            <mat-error *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched">
+              Ім'я є обов'язковим
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Прізвище</mat-label>
+            <input matInput formControlName="lastName" placeholder="Введіть прізвище" />
+            <mat-error *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched">
+              Прізвище є обов'язковим
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>По-батькові</mat-label>
+            <input matInput formControlName="surName" placeholder="Введіть по-батькові" />
+            <mat-error *ngIf="profileForm.get('surName')?.invalid && profileForm.get('surName')?.touched">
+              По-батькові є обов'язковим
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field">
+            <mat-label>Телефон</mat-label>
+            <input matInput type="tel" formControlName="phone" placeholder="Введіть телефон" />
+            <mat-error *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched">
+              Телефон є обов'язковим
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+
+      <button type="submit" class="btn btn-secondary w-100" type="submit"
+        [disabled]="profileForm.invalid">Зберегти</button>
+    </mat-card>
+  </form>
+</div>

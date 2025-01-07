@@ -1,7 +1,13 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="''"><strong>BudEngineer</strong></a>
-    <div class="">
+
+    <div class="d-flex">
+      <button class="btn btnBasket" (click)="toogleProfile()">
+        <!-- <p>{{userData.displayName}}</p> -->
+        <img *ngIf="userData.photoURL" class="profilePhoto" [src]="userData.photoURL" alt="">
+        <img *ngIf="!userData || !userData.photoURL" class="profilePhoto" src="logo/logo.png" alt="">
+      </button>
       <button class="btn btnBasket" (click)="toogleBasket()"><i class="fa-solid fa-basket-shopping"></i>
         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {{selectedServices.length}}
@@ -17,15 +23,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <div class="d-flex">
+          <button class="btn btnBasket" (click)="toogleProfile()">
+            <img *ngIf="userData.photoURL" class="profilePhoto" [src]="userData.photoURL" alt="">
+            <img *ngIf="!userData || !userData.photoURL" class="profilePhoto" src="logo/logo.png" alt="">
+          </button>
+          <button class="btn btnBasket" (click)="toogleBasket()"><i class="fa-solid fa-basket-shopping"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{selectedServices.length}}
+            </span></button>
+        </div>
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mt-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="''">Головна</a>
+            <a class="nav-link active" aria-current="page" href="/">Головна</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/specialists">Про нас</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/services'">Всі послуги</a>
+            <a class="nav-link" href="/services">Всі послуги</a>
           </li>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

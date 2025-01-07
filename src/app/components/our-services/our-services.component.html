@@ -1,5 +1,7 @@
 <!-- Вибір категорії -->
 
+<p class="w-100 t-c mt-4 bold border-top p-2">Ми надаємо послуги за такими категоріями</p>
+
 <div class="d-flex jc-c al-c">
   <mat-form-field>
     <mat-label>Вибір категорії</mat-label>
@@ -8,10 +10,6 @@
       <option *ngFor="let category of services; let i = index" [value]="i">{{ category.category }}</option>
     </select>
   </mat-form-field>
-
-  <!-- <div class="d-flex jc-c al-c p-2 ">
-    <a [routerLink]="'/all-services'">Всі послуги</a>
-  </div> -->
 </div>
 
 <div class="card-deck">
@@ -28,14 +26,22 @@
         <h5>{{ card.name }}</h5>
         <p class="t-min pt-2 gray">{{ card.shortDescription }}</p>
       </div>
-      <div class="btn-group w-100 p-2">
-        <a [routerLink]="'/services'" class="btn btn-primary w-100 mt-2">Всі
-          послуги</a>
+      <!-- <div class="btn-group w-100 p-2"> -->
+        <!-- <a [routerLink]="'/services'" class="btn btn-primary w-100 mt-2">Всі
+          послуги</a> -->
         <!-- <button class="btn btn-primary w-100 mt-2 bg-yellow" *ngIf="isServiceSelected(card)"
           (click)="toggleSelection(card)"><i class="fa-regular fa-circle-xmark white pr-2"></i>Відмінити</button> -->
         <!-- <button class="btn btn-primary w-100 mt-2 bg-green" *ngIf="!isServiceSelected(card)"
           (click)="toggleSelection(card)"><i class="fa-solid fa-cart-plus white pr-2"></i>В кошик</button> -->
-      </div>
+      <!-- </div> -->
     </div>
+  </div>
+</div>
+
+<p class="w-100 t-c p-2">Переглянути та обрати потрібну послугу</p>
+
+<div class="btn-group">
+  <div class="btn-primary p-2">
+    <a [routerLink]="'/services'">Всі послуги</a>
   </div>
 </div>

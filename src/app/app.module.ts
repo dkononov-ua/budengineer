@@ -46,6 +46,13 @@ import { AboutServiseComponent } from './components/about-servise/about-servise.
 import { ProcessComponent } from './components/process/process.component';
 import { TransferComponent } from './components/transfer/transfer.component';
 import { SpecialistsComponent } from './components/specialists/specialists.component';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { firebaseConfig } from '../app/config/firebaseConfig';
+import { AuthComponent } from './components/auth/auth.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +73,8 @@ import { SpecialistsComponent } from './components/specialists/specialists.compo
     ProcessComponent,
     TransferComponent,
     SpecialistsComponent,
+    AuthComponent,
+    UserProfileComponent,
   ],
 
   bootstrap: [AppComponent],
@@ -100,6 +109,8 @@ import { SpecialistsComponent } from './components/specialists/specialists.compo
     NgOptimizedImage,
     AppRoutingModule,
     MatButtonModule, MatDividerModule, MatIconModule,
+    AngularFireModule.initializeApp(firebaseConfig), // Ініціалізація Firebase
+    AngularFireAuthModule, // Модуль для аутентифікації
   ],
   providers: [
     DatePipe,

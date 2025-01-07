@@ -74,7 +74,6 @@ export class AppComponent {
   async ngOnInit(): Promise<void> {
     this.checkDeviceService.checkIsMobile();
     this.getCheckDevice();
-    this.getPosts();
   }
 
   // підписка на статус корзини
@@ -88,15 +87,6 @@ export class AppComponent {
     });
   }
 
-  async getPosts(): Promise<any> {
-    try {
-      const response: any = await this.firebaseDataService.fetchData('posts');
-    } catch (error) {
-      console.error('Error loading posts:', error);
-    }
-  }
-
-  // підписка на шлях до серверу
   async getCheckDevice() {
     // console.log('getCheckDevice')
     this.subscriptions.push(
