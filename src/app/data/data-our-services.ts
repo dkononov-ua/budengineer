@@ -15,7 +15,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-keyboard",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
       },
       {
         id: 2,
@@ -32,7 +32,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-drafting-compass",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
 
       },
       {
@@ -50,7 +50,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-check-double",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
 
       },
       {
@@ -69,7 +69,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-pen-clip",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
 
       },
       {
@@ -84,7 +84,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-box-archive",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
       },
 
     ]
@@ -107,7 +107,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-drafting-compass",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
 
       },
       {
@@ -123,7 +123,7 @@ export const services = [
         ribbonIcon: "fa-solid fa-check-double",
         btnText: 'Детальніше',
         url: '#',
-        price: 100,
+        price: '',
 
       }
     ]
@@ -144,7 +144,7 @@ export const services = [
   //       ribbonIcon: "fa-solid fa-file-signature",
   //       btnText: 'Детальніше',
   //       url: '#',
-  // price: 100,
+  // price: '',
 
   //     },
   //     {
@@ -157,7 +157,7 @@ export const services = [
   //       ribbonIcon: "fa-solid fa-check-double",
   //       btnText: 'Детальніше',
   //       url: '#',
-  // price: 100,
+  // price: '',
 
   //     },
   //     {
@@ -170,7 +170,7 @@ export const services = [
   //       ribbonIcon: "fa-solid fa-helmet-safety",
   //       btnText: 'Детальніше',
   //       url: '#',
-  // price: 100,
+  // price: '',
 
   //     }
   //   ]

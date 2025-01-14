@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-specialists',
@@ -54,13 +55,25 @@ export class SpecialistsComponent implements OnInit {
       }
     }, 200);
   }
+  users: any[] = []; // Масив для зберігання користувачів
 
   constructor(
     private el: ElementRef,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.scrollToAnchor(0);
+    this.loadAllUsers();
+  }
+
+  async loadAllUsers() {
+    try {
+      this.users = await this.userService.getAllUsers(); // Отримуємо список користувачів
+      console.log('Користувачі:', this.users);
+    } catch (error) {
+      console.error('Помилка при отриманні користувачів:', error);
+    }
   }
 }
 

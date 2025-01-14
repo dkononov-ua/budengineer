@@ -10,9 +10,13 @@
 
 .container {
   @include flex-box-center;
+  justify-content: flex-start;
   flex-direction: column;
+  align-items: stretch;
   width: 100%;
+  min-width: 300px;
   padding: 20px;
+  height: 90vh;
 }
 
 .btn-secondary {

@@ -52,6 +52,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { firebaseConfig } from '../app/config/firebaseConfig';
 import { AuthComponent } from './components/auth/auth.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { StatusMessageComponent } from "./components/status-message/status-message.component";
+import { FilterSelectedPipe } from './pipe/filterSelected.pipe';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     SpecialistsComponent,
     AuthComponent,
     UserProfileComponent,
+    FilterSelectedPipe,
   ],
 
   bootstrap: [AppComponent],
@@ -110,8 +113,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AppRoutingModule,
     MatButtonModule, MatDividerModule, MatIconModule,
     AngularFireModule.initializeApp(firebaseConfig), // Ініціалізація Firebase
-    AngularFireAuthModule, // Модуль для аутентифікації
-  ],
+    AngularFireAuthModule,
+    StatusMessageComponent,
+],
   providers: [
     DatePipe,
     SharedService,

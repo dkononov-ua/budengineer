@@ -35,7 +35,6 @@ export class NavComponent implements OnInit {
     this.getUserData();
   }
 
-  // підписка на статус корзини
   async getUserData() {
     this.firebaseDataService.userData$.subscribe((data: any) => {
       this.userData = data;
@@ -93,8 +92,6 @@ export class NavComponent implements OnInit {
     this.profileStaus = !this.profileStaus;
     this.toogleService.toogleProfile(this.profileStaus);
   }
-
-
 
 
 }

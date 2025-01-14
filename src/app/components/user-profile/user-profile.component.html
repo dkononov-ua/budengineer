@@ -1,45 +1,164 @@
 <div class="container-content w-100 mt-3" *ngIf="autorization">
   <form class="content-wrapper w-100" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-    <mat-card class="d-flex t-c p-2">
-      <mat-card-title>Профіль користувача</mat-card-title>
-      <mat-card-content>
-        <div class="form-group mt-2">
+    <mat-card class="d-flex t-c p-2 w-100">
+      <mat-card-title>Дані користувача</mat-card-title>
+      <div class="form-group mt-2">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Ім'я</mat-label>
+          <input matInput formControlName="firstName" placeholder="Введіть ім'я" />
+          <mat-error *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched">
+            Ім'я є обов'язковим
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Прізвище</mat-label>
+          <input matInput formControlName="lastName" placeholder="Введіть прізвище" />
+          <mat-error *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched">
+            Прізвище є обов'язковим
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>По-батькові</mat-label>
+          <input matInput formControlName="surName" placeholder="Введіть по-батькові" />
+          <mat-error *ngIf="profileForm.get('surName')?.invalid && profileForm.get('surName')?.touched">
+            По-батькові є обов'язковим
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Телефон</mat-label>
+          <input matInput type="tel" formControlName="phone" placeholder="Введіть телефон" />
+          <mat-error *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched">
+            Телефон є обов'язковим
+          </mat-error>
+        </mat-form-field>
+
+        <div class="w-100" formGroupName="social">
           <mat-form-field appearance="outline" class="form-field">
-            <mat-label>Ім'я</mat-label>
-            <input matInput formControlName="firstName" placeholder="Введіть ім'я" />
-            <mat-error *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched">
-              Ім'я є обов'язковим
+            <mat-label>Telegram</mat-label>
+            <input matInput formControlName="telegram" placeholder="Введіть посилання на Telegram" />
+            <mat-error
+              *ngIf="profileForm.get('social.telegram')?.invalid && profileForm.get('social.telegram')?.touched">
+              Невірне посилання
             </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="form-field">
-            <mat-label>Прізвище</mat-label>
-            <input matInput formControlName="lastName" placeholder="Введіть прізвище" />
-            <mat-error *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched">
-              Прізвище є обов'язковим
+            <mat-label>Instagram</mat-label>
+            <input matInput formControlName="instagram" placeholder="Введіть посилання на Instagram" />
+            <mat-error
+              *ngIf="profileForm.get('social.instagram')?.invalid && profileForm.get('social.instagram')?.touched">
+              Невірне посилання
             </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="form-field">
-            <mat-label>По-батькові</mat-label>
-            <input matInput formControlName="surName" placeholder="Введіть по-батькові" />
-            <mat-error *ngIf="profileForm.get('surName')?.invalid && profileForm.get('surName')?.touched">
-              По-батькові є обов'язковим
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="form-field">
-            <mat-label>Телефон</mat-label>
-            <input matInput type="tel" formControlName="phone" placeholder="Введіть телефон" />
-            <mat-error *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched">
-              Телефон є обов'язковим
+            <mat-label>LinkedIn</mat-label>
+            <input matInput formControlName="linkedin" placeholder="Введіть посилання на LinkedIn" />
+            <mat-error
+              *ngIf="profileForm.get('social.linkedin')?.invalid && profileForm.get('social.linkedin')?.touched">
+              Невірне посилання
             </mat-error>
           </mat-form-field>
         </div>
-      </mat-card-content>
+
+
+
+        <!-- Відображення збережених даних -->
+        <div class="profile-services w-100" *ngIf="savedServices.length > 0">
+          <mat-card-title class="t-c">Я можу надавати такі послуги</mat-card-title>
+          <div class="d-flex jc-sb mb-3 border-bottom w-100" *ngFor="let service of savedServices">
+            {{ service.name }} — {{ service.price }} грн
+            <button class="btn-close" type="button"
+              (click)="toggleServiceSelection(service, service, service.price)"></button>
+          </div>
+        </div>
+
+      </div>
 
       <button type="submit" class="btn btn-secondary w-100" type="submit"
         [disabled]="profileForm.invalid">Зберегти</button>
     </mat-card>
   </form>
-</div>
+
+  <div class="categories-container">
+    <mat-card-title class="t-c" *ngIf="filteredCategories && filteredCategories !== []">
+      Доступні послуги
+      <p class="t-min" *ngIf="filteredCategories && filteredCategories !== []">
+        Оберіть послуги які можете надавати та вкажіть орієнтовну вартість після чого натисніть кнопку "Додати" та
+        збережіть ваш профіль</p>
+    </mat-card-title>
+    <div *ngFor="let category of filteredCategories" class="category">
+      <mat-card-title class="t-c">
+        {{ category.category }}
+      </mat-card-title>
+      <div class="services-list" *ngIf="filteredCategories && filteredCategories !== []">
+
+        <mat-card *ngFor="let service of category.services" class="mat-card">
+          <mat-card-content>
+            <div class="service-content">
+              <img class="img-logo" src="{{ service.imageUrl }}" alt="logo">
+              <p class="t-med bold">{{ service.name }}</p>
+            </div>
+          </mat-card-content>
+          <mat-card-content>
+            <mat-form-field appearance="outline" class="form-field">
+              <mat-label>Вартість</mat-label>
+              <input matInput type="number" [(ngModel)]="service.price" placeholder="Введіть свою ціну" />
+            </mat-form-field>
+            <button class="btn w-100" type="button"
+              (click)="toggleServiceSelection(category, service, service.price)">Додати
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Відображення збережених даних -->
+  <div class="profile-services w-100" *ngIf="savedTools.length > 0">
+    <mat-card-title class="t-c">Я володію такими інструментами</mat-card-title>
+    <div class="d-flex jc-sb mb-3 border-bottom w-100" *ngFor="let tools of savedTools">
+      {{ tools.name }} — {{ tools.proficiency }} %
+      <button class="btn-close" type="button"
+        (click)="toggleToolsSelection(tools)"></button>
+    </div>
+  </div>
+
+  <div class="categories-container">
+    <mat-card-title class="t-c" *ngIf="filteredTools?.length">Володіння інструментами</mat-card-title>
+    <p class="t-min" *ngIf="filteredTools?.length">
+      Оберіть інструменти, якими володієте, та вкажіть рівень володіння, після чого натисніть кнопку "Додати" та
+      збережіть ваш профіль.
+    </p>
+
+    <div *ngIf="filteredTools?.length" class="tools">
+      <mat-card *ngFor="let technology of filteredTools" class="mat-card">
+        <mat-card-content>
+          <div class="service-content">
+            <img class="img-logo" src="{{ technology.image }}" alt="logo">
+            <p class="service-name">{{ technology.name }}</p>
+          </div>
+          <div class="example-label-container">
+            <label class="example-value-label">{{slider.value}}%</label>
+          </div>
+          <mat-slider class="example-margin" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+            [discrete]="thumbLabel" [showTickMarks]="showTicks">
+            <input matSliderThumb [(ngModel)]="technology.proficiency" #slider>
+          </mat-slider>
+          <mat-hint class="t-min gray">Виберіть рівень володіння</mat-hint>
+
+        </mat-card-content>
+        <button class="btn" type="button" (click)="toggleToolsSelection(technology)">
+          Додати
+        </button>
+      </mat-card>
+    </div>
+
+
+
+
+
+  </div>

@@ -1,25 +1,43 @@
 <app-caruesel></app-caruesel>
-<section class="our-team mb-2">
+<section class="specialists mb-2">
   <h3 class="t-c bold">Спеціалісти які виконують роботи</h3>
   <div class="container-card mt-2">
     <div class="row row-mid">
-      <div class="team-member col-lg-4 col-md-4 col-sm-12 col-12" *ngFor="let member of teamMembers">
-        <div class="team-member-image">
-          <img src="{{ member.image }}" alt="{{ member.name }}">
+      <div class="team-user col-lg-4 col-md-4 col-sm-12 col-12" *ngFor="let user of users">
+        <div class="team-user-image" *ngIf="user.photoURL">
+          <img src="{{ user.photoURL }}" alt="{{'фото'}}">
         </div>
-        <div class="team-member-info">
-          <h3 class="team-member-name">{{ member.name }}</h3>
-          <p class="team-member-position">{{ member.position }}</p>
-          <p class="team-member-description">{{ member.description }}</p>
-          <div class="team-member-social">
-            <a *ngIf="member.social.telegram" target="_blank" href="{{ member.social.telegram }}"><i
+        <div class="team-user-info">
+          <h3 class="team-user-name">{{ user.lastName || 'Без прізвища' }} {{ user.firstName || 'Без імені' }} {{
+            user.surName || 'Без прізвища' }} </h3>
+          <p class="team-user-description" *ngFor="let service of user.services">{{ service.name || 'Немає даних' }} {{
+            service.price || 'Немає даних' }} грн</p>
+
+          <p class="team-user-position">{{ user.position }}</p>
+          <p class="team-user-description">{{ user.description }}</p>
+          <div class="team-user-social">
+            <a *ngIf="user.social.telegram" target="_blank" href="{{ user.social.telegram }}"><i
                 class="fab fa-brands fa-telegram"></i></a>
-            <a *ngIf="member.social.instagram" target="_blank" href="{{ member.social.instagram }}"><i
+            <a *ngIf="user.social.instagram" target="_blank" href="{{ user.social.instagram }}"><i
                 class="fab fa-brands fa-instagram"></i></a>
-            <!-- <a href="{{ member.social.twitter }}"><i class="fab fa-twitter"></i></a> -->
-            <a *ngIf="member.social.linkedin" target="_blank" href="{{ member.social.linkedin }}"><i
+            <!-- <a href="{{ user.social.twitter }}"><i class="fab fa-twitter"></i></a> -->
+            <a *ngIf="user.social.linkedin" target="_blank" href="{{ user.social.linkedin }}"><i
                 class="fab fa-linkedin-in"></i></a>
+            <a *ngIf="user.phone" [href]="'tel:' + user.phone" class="contact-link">
+              <i class="fas fa-phone"></i>
+            </a>
+            <a *ngIf="user.email" [href]="'mailto:' + user.email" class="contact-link">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
+
+          <div class="tools-box">
+            <div class="tools" *ngFor="let tool of user.tools">
+              <img src="{{ tool.image }}" alt="">
+              <p class="t-min gray">{{ tool.name }} <span class="bold">{{ tool.proficiency }}%</span></p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

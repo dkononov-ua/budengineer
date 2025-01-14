@@ -6,6 +6,7 @@ import { FirebaseDataService } from './config/firebaseData.service';
 import { ToogleService } from './services/toogle.service';
 import { BasketComponent } from "./components/basket/basket.component";
 import { MatDialog } from '@angular/material/dialog';
+import { StatusMessageService } from './services/status-message.service';
 
 @Component({
   selector: 'app-root',
@@ -62,6 +63,7 @@ export class AppComponent {
   }
   posts: any[] = [];
   basketMenu: boolean = false;
+  statusMessage: string = '';
 
   constructor(
     private location: Location,
@@ -69,11 +71,13 @@ export class AppComponent {
     private firebaseDataService: FirebaseDataService,
     private toogleService: ToogleService,
     private dialog: MatDialog,
+    private statusMessageService: StatusMessageService,
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.checkDeviceService.checkIsMobile();
     this.getCheckDevice();
+    this.getStatusMessage();
   }
 
   // підписка на статус корзини
@@ -96,6 +100,17 @@ export class AppComponent {
         if (!this.isMobile) {
           this.changeBG();
         }
+      })
+    );
+  }
+
+  // підписка на статус для показу користувачу
+  async getStatusMessage() {
+    // console.log('getStatusMessage')
+    this.subscriptions.push(
+      this.statusMessageService.statusMessage$.subscribe((message: string) => {
+        // console.log(message);
+        this.statusMessage = message;
       })
     );
   }
