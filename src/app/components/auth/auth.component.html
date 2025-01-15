@@ -1,45 +1,49 @@
-<div class="container">
+<div class="container p-2">
 
-  <mat-card class="d-flex t-c p-2 form-group" *ngIf="autorization">
-    <mat-card-title>Прив'язана пошта <i class="fa-solid fa-link"></i></mat-card-title>
-    <mat-card-content>
+  <div class="logo">
+    <img src="logo/footer0.svg" alt="БудІнженер лого">
+  </div>
+
+  <p class="t-med p-3 t-c"><strong>BudEngineer</strong> - інженерний супровід в будівництві!</p>
+
+  <div class="d-flex t-c p-2 form-group" *ngIf="autorization">
+    <div class="p-2">
       <img *ngIf="userData.photoURL" class="profilePhoto" [src]="userData.photoURL" alt="user-photo">
       <img *ngIf="!userData.photoURL" class="profilePhoto" src="logo/logo.png" alt="">
-      <p *ngIf="userData.displayName">{{userData.displayName}}</p>
+      <p *ngIf="userData.firstName">{{userData.firstName}}</p>
       <p *ngIf="userData.email">{{userData.email}} </p>
-    </mat-card-content>
-    <button *ngIf="userData" type="submit" class="btn btn-secondary m-2" (click)="logout()">Вийти з профілю</button>
-  </mat-card>
+    </div>
+    <button *ngIf="userData" type="submit" class="btn btn-secondary" (click)="logout()">Вийти з профілю <i
+        class="fa-solid fa-door-open"></i></button>
+    <a href="/profile" *ngIf="userData" class="btn btn-secondary">Налаштування <i class="fa-solid fa-gears"></i></a>
+  </div>
 
   <form (ngSubmit)="register()" *ngIf="authValue === 1">
     <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
     <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
     <input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="phoneNumber" required>
-    <button type="submit" class="btn btn-secondary m-2">Зареєструватись</button>
+    <button type="submit" class="btn btn-secondary">Зареєструватись</button>
   </form>
 
-  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary m-2" (click)="authValue = 1">
+  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary" (click)="authValue = 1">
     Реєстрація
   </button>
 
-  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary m-2" (click)="googleLogin()">
+  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary" (click)="googleLogin()">
     Авторизація з <i class="fa-brands fa-google"></i>
   </button>
 
-  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary m-2" (click)="authValue = 2">
+  <button *ngIf="authValue === 0 && !userData" class="btn btn-secondary" (click)="authValue = 2">
     Вхід
   </button>
 
   <form (ngSubmit)="login()" *ngIf="authValue === 2">
     <input type="email" [(ngModel)]="userData.email" name="email" placeholder="Email" required>
     <input type="password" [(ngModel)]="userData.password" name="password" placeholder="Password" required>
-    <button type="submit" class="btn btn-secondary m-2">Увійти</button>
+    <button type="submit" class="btn btn-secondary">Увійти</button>
   </form>
 
-  <button *ngIf="authValue !== 0" class="btn btn-secondary m-2" (click)="authValue = 0">
+  <button *ngIf="authValue !== 0" class="btn btn-secondary" (click)="authValue = 0">
     Назад
   </button>
-
-  <app-user-profile></app-user-profile>
-
 </div>

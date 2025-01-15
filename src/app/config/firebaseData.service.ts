@@ -33,8 +33,10 @@ export class FirebaseDataService {
       if (user) {
         this.userData = user;
         if (this.userData && this.userData._delegate) {
+          // console.log('User data:', this.userData._delegate);
           this.userType = {
-            displayName: this.userData.displayName,
+            firstName: this.userData.displayName.split(' ')[0] || '', // Частина до пробілу
+            lastName: this.userData.displayName.split(' ')[1] || '',  // Частина після пробілу
             email: this.userData.email,
             phoneNumber: this.userData.phoneNumber,
             photoURL: this.userData.photoURL,
@@ -135,7 +137,7 @@ export class FirebaseDataService {
   }
 
   saveImage(selectedImage: File) {
-    console.log('Selected image:', selectedImage);
+    // console.log('Selected image:', selectedImage);
     const filePath = `user_photos/${Date.now()}_${selectedImage.name}`; // Створюємо шлях для файлу
     const fileRef = this.storage.ref(filePath); // Отримуємо посилання на файл в Firebase Storage
     const uploadTask = fileRef.put(selectedImage); // Завантажуємо файл

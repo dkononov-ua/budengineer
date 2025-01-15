@@ -1,47 +1,59 @@
 <app-caruesel></app-caruesel>
-<section class="specialists mb-2">
-  <h3 class="t-c bold">Спеціалісти які виконують роботи</h3>
-  <div class="container-card mt-2">
-    <div class="row row-mid">
-      <div class="team-user col-lg-4 col-md-4 col-sm-12 col-12" *ngFor="let user of users">
-        <div class="team-user-image" *ngIf="user.photoURL">
-          <img src="{{ user.photoURL }}" alt="{{'фото'}}">
+<h2 class="section-title text-center mt-4">Спеціалісти BudEngeeneer</h2>
+<section class="specialists">
+  <div *ngFor="let user of users" class="specialist-card col-lg-4 col-md-6 col-sm-12 p-3">
+    <div class="card">
+      <div class="card-header">
+        <img *ngIf="user.user.photoURL" [src]="user.user.photoURL" [alt]="user.user.firstName || 'Фото спеціаліста'"
+          class="card-img-top">
+        <h3 class="card-title">{{ user.user.lastName || 'Прізвище невідоме' }} {{ user.user.firstName || "Ім'я невідоме" }} {{
+          user.user.surName || '' }}</h3>
+
+      </div>
+      <div class="card-body">
+        <p class="card-text position">{{ user.position || 'Посада не вказана' }}</p>
+        <p class="card-text description">{{ user.description || 'Опис відсутній' }}</p>
+
+        <div class="skills">
+          <h4 class="skills-title">Навички:</h4>
+          <ul class="skills-list">
+            <li *ngFor="let tool of user.tools">
+              <img [src]="tool.image" [alt]="tool.name" class="tool-icon">
+              <span>{{ tool.name }} - {{ tool.proficiency || 0 }}%</span>
+            </li>
+          </ul>
         </div>
-        <div class="team-user-info">
-          <h3 class="team-user-name">{{ user.lastName || 'Без прізвища' }} {{ user.firstName || 'Без імені' }} {{
-            user.surName || 'Без прізвища' }} </h3>
-          <p class="team-user-description" *ngFor="let service of user.services">{{ service.name || 'Немає даних' }} {{
-            service.price || 'Немає даних' }} грн</p>
 
-          <p class="team-user-position">{{ user.position }}</p>
-          <p class="team-user-description">{{ user.description }}</p>
-          <div class="team-user-social">
-            <a *ngIf="user.social.telegram" target="_blank" href="{{ user.social.telegram }}"><i
-                class="fab fa-brands fa-telegram"></i></a>
-            <a *ngIf="user.social.instagram" target="_blank" href="{{ user.social.instagram }}"><i
-                class="fab fa-brands fa-instagram"></i></a>
-            <!-- <a href="{{ user.social.twitter }}"><i class="fab fa-twitter"></i></a> -->
-            <a *ngIf="user.social.linkedin" target="_blank" href="{{ user.social.linkedin }}"><i
-                class="fab fa-linkedin-in"></i></a>
-            <a *ngIf="user.phone" [href]="'tel:' + user.phone" class="contact-link">
-              <i class="fas fa-phone"></i>
-            </a>
-            <a *ngIf="user.email" [href]="'mailto:' + user.email" class="contact-link">
-              <i class="fas fa-envelope"></i>
-            </a>
+        <div class="services">
+          <h4 class="services-title">Послуги:</h4>
+          <ul class="services-list">
+            <li *ngFor="let service of user.services">
+              <span>{{ service.name || 'Послуга не вказана' }} - {{ service.price || 'Ціна договірна' }} грн</span>
+              <!-- <a [href]="service.url">{{ service.name || 'Послуга не вказана' }} - {{ service.price || 'Ціна не вказана'
+                }} грн</a> -->
+            </li>
+          </ul>
+        </div>
+
+        <div class="contacts">
+          <h4 class="contacts-title">Контакти:</h4>
+          <div class="social-links">
+            <a *ngIf="user.social.telegram" [href]="user.social.telegram" target="_blank"
+              class="social-icon telegram"><i class="fab fa-telegram"></i></a>
+            <a *ngIf="user.social.instagram" [href]="user.social.instagram" target="_blank"
+              class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+            <a *ngIf="user.social.linkedin" [href]="user.social.linkedin" target="_blank"
+              class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
+            <a *ngIf="user.contacts.phone" [href]="'tel:' + user.contacts.phone" class="social-icon phone"><i
+                class="fas fa-phone"></i></a>
+            <a *ngIf="user.contacts.email" [href]="'mailto:' + user.contacts.email" class="social-icon email"><i
+                class="fas fa-envelope"></i></a>
           </div>
-
-          <div class="tools-box">
-            <div class="tools" *ngFor="let tool of user.tools">
-              <img src="{{ tool.image }}" alt="">
-              <p class="t-min gray">{{ tool.name }} <span class="bold">{{ tool.proficiency }}%</span></p>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
   </div>
 </section>
+
 <app-process></app-process>
 <app-transfer></app-transfer>

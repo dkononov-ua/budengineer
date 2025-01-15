@@ -1,13 +1,17 @@
 <div class="body-container">
-  <app-nav></app-nav>
+  <nav>
+    <app-nav></app-nav>
+  </nav>
   <!-- <app-basket></app-basket> -->
   <div class="content-conteiner">
     <router-outlet></router-outlet>
-    <footer>
-      <app-footer></app-footer>
-    </footer>
+    <ng-container *ngIf="statusMessage">
+      <app-status-message></app-status-message>
+    </ng-container>
   </div>
-  <ng-container *ngIf="statusMessage">
-    <app-status-message></app-status-message>
-  </ng-container>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+
+
 </div>

@@ -1,0 +1,79 @@
+<form class="content-container pb-2" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+  <h2>Дані користувача</h2>
+
+  <div class="form-group" formGroupName="user">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Ім'я</mat-label>
+      <input matInput formControlName="firstName" placeholder="Введіть ім'я" />
+      <mat-error *ngIf="profileForm.get('user.firstName')?.invalid && profileForm.get('user.firstName')?.touched">
+        Ім'я є обов'язковим
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Прізвище</mat-label>
+      <input matInput formControlName="lastName" placeholder="Введіть прізвище" />
+      <mat-error *ngIf="profileForm.get('user.lastName')?.invalid && profileForm.get('user.lastName')?.touched">
+        Прізвище є обов'язковим
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>По-батькові</mat-label>
+      <input matInput formControlName="surName" placeholder="Введіть по-батькові" />
+      <mat-error *ngIf="profileForm.get('user.surName')?.invalid && profileForm.get('user.surName')?.touched">
+        По-батькові є обов'язковим
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group" formGroupName="contacts">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Телефон</mat-label>
+      <input matInput type="tel" formControlName="phone" placeholder="Введіть телефон" />
+      <mat-error *ngIf="profileForm.get('contacts.phone')?.invalid && profileForm.get('contacts.phone')?.touched">
+        Телефон є обов'язковим
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Введіть пошту" />
+      <mat-error *ngIf="profileForm.get('contacts.email')?.invalid && profileForm.get('contacts.email')?.touched">
+        Пошта є обов'язкова
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group" formGroupName="social">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Telegram</mat-label>
+      <input matInput formControlName="telegram" placeholder="Введіть посилання на Telegram" />
+      <mat-error *ngIf="profileForm.get('social.telegram')?.invalid && profileForm.get('social.telegram')?.touched">
+        Невірне посилання
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Instagram</mat-label>
+      <input matInput formControlName="instagram" placeholder="Введіть посилання на Instagram" />
+      <mat-error *ngIf="profileForm.get('social.instagram')?.invalid && profileForm.get('social.instagram')?.touched">
+        Невірне посилання
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>LinkedIn</mat-label>
+      <input matInput formControlName="linkedin" placeholder="Введіть посилання на LinkedIn" />
+      <mat-error *ngIf="profileForm.get('social.linkedin')?.invalid && profileForm.get('social.linkedin')?.touched">
+        Невірне посилання
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="btn-group p-2">
+    <button type="submit" class="btn btn-secondary" type="submit" [disabled]="profileForm.invalid">Зберегти <i
+        class="fa-regular fa-circle-check"></i></button>
+  </div>
+
+</form>

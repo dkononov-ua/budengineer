@@ -1,6 +1,7 @@
 // параметри користувача
 export interface UserType {
-  displayName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phoneNumber: string;
   photoURL: string;

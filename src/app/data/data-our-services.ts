@@ -14,7 +14,7 @@ export const services = [
         ribbonText: 'Виконавча',
         ribbonIcon: "fa-solid fa-keyboard",
         btnText: 'Детальніше',
-        url: '#',
+        url: 'acty-na-zakryttya-prykhovanykh-robit',
         price: '',
       },
       {

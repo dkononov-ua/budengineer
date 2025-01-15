@@ -1,6 +1,8 @@
+import { first } from 'rxjs';
 
 export const UserConfig = {
-  displayName: '',
+  firstName: '',
+  lastName: '',
   email: '',
   phoneNumber: '',
   photoURL: '',

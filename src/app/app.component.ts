@@ -12,7 +12,7 @@ import { StatusMessageService } from './services/status-message.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  standalone: false, // компонент є standalone
+  standalone: false,
   animations: [
     animations.bot,
     animations.bot3,

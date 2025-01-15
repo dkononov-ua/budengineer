@@ -3,6 +3,37 @@
 
 .btn {
   font-family: $font-main;
+  text-transform: uppercase;
+  .fa-solid,
+  .fa-regular {
+    color: $color-dark;
+  }
+
+  &:hover {
+    color: $color-white;
+    font-weight: bold;
+    .fa-solid,
+    .fa-regular {
+      color: $color-white;
+    }
+  }
+  &:active {
+    color: $color-white;
+    font-weight: bold;
+    .fa-solid,
+    .fa-regular {
+      color: $color-white;
+    }
+  }
+  &:focus {
+    color: $color-white;
+    font-weight: bold;
+    .fa-solid,
+    .fa-regular {
+      color: $color-white;
+    }
+  }
+
 }
 
 .hover {

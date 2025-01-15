@@ -1,0 +1,47 @@
+<div class="categories-container">
+  <div class="t-c" *ngIf="filteredCategories && filteredCategories !== []">
+    Доступні послуги
+    <p class="t-min" *ngIf="filteredCategories && filteredCategories !== []">
+      Оберіть послуги які можете надавати та вкажіть орієнтовну вартість після чого натисніть кнопку "Додати" та
+      збережіть ваш профіль</p>
+  </div>
+</div>
+
+<div *ngFor="let category of filteredCategories" class="category">
+  <h2 class="t-c">
+    {{ category.category }}
+  </h2>
+  <div class="services-list" *ngIf="filteredCategories && filteredCategories !== []">
+    <div class="col-lg-4 col-md-6 col-sm-12 p-2" *ngFor="let service of category.services">
+      <div class="card service-item t-c">
+        <img class="img-logo" src="{{ service.imageUrl }}" alt="logo">
+        <p class="t-med bold">{{ service.name }}</p>
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Вартість</mat-label>
+          <input matInput type="number" [(ngModel)]="service.price" placeholder="Введіть свою ціну" />
+        </mat-form-field>
+        <button class="btn" type="button" (click)="toggleServiceSelection(category, service, service.price)">Додати
+        </button>
+      </div>
+    </div>
+    <div *ngIf="category.services.length < 1" class="t-med gray">Поки що це всі послуги в цій категорії...</div>
+  </div>
+
+</div>
+
+<form class="content-container w-100" [formGroup]="serviseForm" (ngSubmit)="saveServise()">
+  <div class="profile-services w-100" *ngIf="savedServices.length > 0">
+    <h2 class="t-c">Я можу надавати такі послуги</h2>
+    <div class="d-flex jc-sb mb-3 border-bottom w-100" *ngFor="let service of savedServices">
+      {{ service.name }} — {{ service.price || 'вартість договоріна' }} грн
+      <button class="btn-close" type="button" (click)="toggleServiceSelection(service, service, service.price)">
+      </button>
+    </div>
+  </div>
+
+  <div class="btn-group p-2">
+    <button type="submit" class="btn btn-secondary" type="submit">Зберегти <i
+        class="fa-regular fa-circle-check"></i></button>
+  </div>
+
+</form>

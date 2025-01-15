@@ -6,6 +6,10 @@ import { AboutServiseComponent } from './components/about-servise/about-servise.
 import { HostServisesComponent } from './page/host-servises/host-servises.component';
 import { AppComponent } from './app.component';
 import { SpecialistsComponent } from './components/specialists/specialists.component';
+import { ProfileComponent } from './page/profile/profile.component';
+import { PersonComponent } from './page/profile/person/person.component';
+import { SkillComponent } from './page/profile/skill/skill.component';
+import { ServiseComponent } from './page/profile/servise/servise.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Головна' } },
@@ -20,6 +24,16 @@ const routes: Routes = [
     ],
   },
   { path: 'specialists', component: SpecialistsComponent, data: { breadcrumb: 'Спеціалісти' } },
+  {
+    path: 'profile', component: ProfileComponent, data: { breadcrumb: 'Профіль' },
+    children: [
+      { path: '', redirectTo: 'person', pathMatch: 'full' },
+      { path: 'person', component: PersonComponent, data: { breadcrumb: 'Персональна інформація' } },
+      { path: 'skill', component: SkillComponent, data: { breadcrumb: 'Навички' } },
+      { path: 'service', component: ServiseComponent, data: { breadcrumb: 'Послуги' } },
+    ],
+  },
+
 ];
 
 

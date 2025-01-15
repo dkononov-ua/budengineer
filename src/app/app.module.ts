@@ -51,9 +51,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { firebaseConfig } from '../app/config/firebaseConfig';
 import { AuthComponent } from './components/auth/auth.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { StatusMessageComponent } from "./components/status-message/status-message.component";
 import { FilterSelectedPipe } from './pipe/filterSelected.pipe';
+import { ProfileComponent } from './page/profile/profile.component';
+import { PersonComponent } from './page/profile/person/person.component';
+import { SkillComponent } from './page/profile/skill/skill.component';
+import { ServiseComponent } from './page/profile/servise/servise.component';
 
 @NgModule({
   declarations: [
@@ -76,8 +79,11 @@ import { FilterSelectedPipe } from './pipe/filterSelected.pipe';
     TransferComponent,
     SpecialistsComponent,
     AuthComponent,
-    UserProfileComponent,
     FilterSelectedPipe,
+    ProfileComponent,
+    PersonComponent,
+    SkillComponent,
+    ServiseComponent
   ],
 
   bootstrap: [AppComponent],

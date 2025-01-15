@@ -1,0 +1,48 @@
+<div class="categories-container">
+  <mat-card-title class="t-c" *ngIf="filteredTools?.length">Володіння інструментами</mat-card-title>
+  <p class="t-min t-c" *ngIf="filteredTools?.length">
+    Оберіть інструменти, якими володієте, та вкажіть рівень володіння, після чого натисніть кнопку "Додати" та
+    збережіть ваш профіль.
+  </p>
+
+  <div *ngIf="filteredTools?.length" class="services-list">
+    <div *ngFor="let technology of filteredTools" class="col-lg-3 col-md-4 col-sm-6 p-2">
+      <div class="card service-item">
+
+        <img class="img-logo-tools" src="{{ technology.image }}" alt="logo">
+        <p class="service-name gray">{{ technology.name }} {{slider.value}}%</p>
+        <mat-slider class="example-margin w-100" [disabled]="disabled" [max]="max" [min]="min" [step]="step"
+          [discrete]="thumbLabel" [showTickMarks]="showTicks">
+          <input matSliderThumb [(ngModel)]="technology.proficiency" #slider>
+        </mat-slider>
+
+        <mat-hint class="t-min gray">Виберіть рівень володіння</mat-hint>
+        <button class="btn" type="button" (click)="toggleToolsSelection(technology)">
+          Додати
+        </button>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <form class="content-container w-100" [formGroup]="toolsForm" (ngSubmit)="saveTools()">
+
+    <div class="skills mt-3" *ngIf="savedTools.length > 0">
+      <h4 class="skills-title">Мої навички:</h4>
+      <div class="skills-list">
+        <div class="list-item" *ngFor="let tool of savedTools">
+          <img [src]="tool.image" [alt]="tool.name" class="tool-icon">
+          <span>{{ tool.name }} - {{ tool.proficiency || 0 }}%</span>
+          <button class="btn-close" type="button" (click)="toggleToolsSelection(tools)"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group p-2">
+      <button type="submit" class="btn btn-secondary" type="submit">Зберегти <i
+          class="fa-regular fa-circle-check"></i></button>
+    </div>
+  </form>

@@ -70,7 +70,7 @@ export class SpecialistsComponent implements OnInit {
   async loadAllUsers() {
     try {
       this.users = await this.userService.getAllUsers(); // Отримуємо список користувачів
-      console.log('Користувачі:', this.users);
+      // console.log('Користувачі:', this.users);
     } catch (error) {
       console.error('Помилка при отриманні користувачів:', error);
     }

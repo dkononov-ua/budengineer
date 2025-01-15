@@ -1,0 +1,176 @@
+@use "../../style/mixins/" as *;
+@use "../../style/presets/" as *;
+
+.btn-group {
+  @include flex-box-center;
+  flex-direction: column;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn {
+  width: 300px;
+  max-width: 100%;
+  @include s1-s3 {
+    width: 100%;
+  }
+}
+
+.content-wrapper {
+  @include flex-box-center;
+  flex-direction: column;
+  padding: 20px;
+  @include s1-s3 {
+    padding-top: 100px;
+  }
+}
+
+.content-container {
+  @include flex-box-center;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group {
+  @include flex-box-center;
+  flex-wrap: wrap;
+  min-width: 100%;
+  max-width: 500px;
+}
+
+.form-field {
+  margin: 5px;
+  @include s1-s3 {
+    margin: 0px;
+    width: 100%;
+  }
+}
+
+.services-list {
+  @include flex-box-center;
+  width: 100%;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.service-item {
+  @include flex-box-center;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  height: 100%;
+  cursor: pointer;
+
+  &.selected {
+    border-color: green;
+    background-color: #e0f7e0;
+  }
+
+  .service-content {
+    flex: 1;
+
+    .service-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .service-price {
+      font-size: 14px;
+      color: #888;
+    }
+  }
+}
+
+.price-field {
+  width: 250px;
+}
+
+.categories-container {
+  margin: 20px 0;
+}
+
+.category {
+  margin-bottom: 20px;
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
+
+.profile-services {
+  margin-top: 30px;
+
+  h2 {
+    font-size: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+  }
+}
+
+.tools {
+  @include flex-box-center;
+  flex-wrap: wrap;
+}
+
+.img-logo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  @include s1-s3 {
+    height: 80px;
+  }
+}
+
+.img-logo-tools {
+  width: auto;
+  height: 120px;
+  object-fit: cover;
+  @include s1-s3 {
+    height: 80px;
+  }
+}
+
+.skills {
+  @include flex-box-center;
+  flex-direction: column;
+
+  .skills-list {
+    @include flex-box-center;
+    flex-wrap: wrap;
+
+    .list-item {
+      position: relative;
+      border: 1px solid $color-light-gray;
+      border-radius: 10px;
+      padding: 3px 40px 3px 3px;
+      margin: 3px;
+
+      .btn-close {
+        position: absolute;
+        right: 0;
+        top: calc(50% - 10px);
+      }
+    }
+  }
+
+  .tool-icon {
+    padding: 0 15px;
+    height: 40px;
+    width: 60px;
+    object-fit: scale-down;
+  }
+  .tools-name {
+    z-index: 1;
+    margin: 10px;
+  }
+}
