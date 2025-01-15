@@ -4,7 +4,7 @@ import { CommonModule, DatePipe, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -57,7 +57,13 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { PersonComponent } from './page/profile/person/person.component';
 import { SkillComponent } from './page/profile/skill/skill.component';
 import { ServiseComponent } from './page/profile/servise/servise.component';
+import { FeaturesComponent } from './page/profile/features/features.component';
 
+import { MatTimepickerModule, MatTimepickerOption } from '@angular/material/timepicker';
+import { MatDateFnsModule, provideDateFnsAdapter } from '@angular/material-date-fns-adapter';
+import { LOCALE_ID } from '@angular/core';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { uk } from 'date-fns/locale'; // Іменований експорт
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +89,8 @@ import { ServiseComponent } from './page/profile/servise/servise.component';
     ProfileComponent,
     PersonComponent,
     SkillComponent,
-    ServiseComponent
+    ServiseComponent,
+    FeaturesComponent,
   ],
 
   bootstrap: [AppComponent],
@@ -121,13 +128,21 @@ import { ServiseComponent } from './page/profile/servise/servise.component';
     AngularFireModule.initializeApp(firebaseConfig), // Ініціалізація Firebase
     AngularFireAuthModule,
     StatusMessageComponent,
-],
+    MatTimepickerModule,
+    MatDateFnsModule,
+
+    MatTimepickerModule
+  ],
   providers: [
     DatePipe,
     SharedService,
     CheckDeviceService,
     ToogleService,
     PricePipe,
+    provideNativeDateAdapter(),
+    provideDateFnsAdapter(),
+    { provide: LOCALE_ID, useValue: 'uk-UA' }, // Локалізація Angular
+    { provide: MAT_DATE_LOCALE, useValue: uk } // Локалізація date-fns
   ]
 })
 

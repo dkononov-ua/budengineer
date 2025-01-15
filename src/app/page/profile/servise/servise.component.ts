@@ -5,12 +5,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { StatusMessageService } from '../../../services/status-message.service';
 import { services as servicesData } from '../../../data/data-our-services';
+import { animations } from '../../../interface/animation';
 
 @Component({
   selector: 'app-servise',
   templateUrl: './servise.component.html',
   styleUrls: ['../profile.component.scss'],
   standalone: false,
+  animations: [
+    animations.topOut,
+    animations.appearance,
+    animations.fadeIn,
+  ],
 })
 export class ServiseComponent implements OnInit {
 
@@ -20,6 +26,11 @@ export class ServiseComponent implements OnInit {
   savedServices: any[] = [];
   userGoogleData: any;
   filteredCategories: any[] = [];
+
+  showItem: boolean = false;
+  toogleShow() {
+    this.showItem = !this.showItem;
+  }
 
   toggleServiceSelection(category: any, service: any, price: number): void {
     const index = this.savedServices.findIndex(
@@ -100,7 +111,7 @@ export class ServiseComponent implements OnInit {
     const userServiseData = {
       services: this.savedServices,
     };
-    console.log('userServiseData:', userServiseData);
+    // console.log('userServiseData:', userServiseData);
     this.userService.saveServiseProfile(userServiseData)
       .then(() => {
         console.log('Послуги успішно збережено!');

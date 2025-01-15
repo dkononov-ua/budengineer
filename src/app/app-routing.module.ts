@@ -10,6 +10,7 @@ import { ProfileComponent } from './page/profile/profile.component';
 import { PersonComponent } from './page/profile/person/person.component';
 import { SkillComponent } from './page/profile/skill/skill.component';
 import { ServiseComponent } from './page/profile/servise/servise.component';
+import { FeaturesComponent } from './page/profile/features/features.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Головна' } },
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'person', component: PersonComponent, data: { breadcrumb: 'Персональна інформація' } },
       { path: 'skill', component: SkillComponent, data: { breadcrumb: 'Навички' } },
       { path: 'service', component: ServiseComponent, data: { breadcrumb: 'Послуги' } },
+      { path: 'features', component: FeaturesComponent, data: { breadcrumb: 'Особливості' } },
     ],
   },
 

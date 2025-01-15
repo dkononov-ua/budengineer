@@ -52,6 +52,10 @@
   width: 100%;
   align-items: stretch;
   flex-wrap: wrap;
+  @include s1-s3 {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
 }
 
 .service-item {
@@ -126,9 +130,6 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  @include s1-s3 {
-    height: 80px;
-  }
 }
 
 .img-logo-tools {
@@ -140,13 +141,29 @@
   }
 }
 
+.timeBox,
+.radio-buttons {
+  @include flex-box-center;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .skills {
   @include flex-box-center;
   flex-direction: column;
+  width: 100%;
 
   .skills-list {
     @include flex-box-center;
     flex-wrap: wrap;
+    width: 100%;
+
+    @include s1-s3 {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
 
     .list-item {
       position: relative;

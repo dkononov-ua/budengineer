@@ -49,6 +49,14 @@ export class UserService {
     return setDoc(userDocRef, userTools, { merge: true });
   }
 
+  // Збереження навичок користувача
+  saveFeaturesProfile(userFeatures: any): Promise<void> {
+    const user = this.auth.currentUser;
+    if (!user) throw new Error('Користувач не авторизований');
+    const userDocRef = doc(this.db, 'users', user.uid);
+    return setDoc(userDocRef, userFeatures, { merge: true });
+  }
+
   // Отримання всіх користувачів
   async getAllUsers(): Promise<any[]> {
     const usersCollectionRef = collection(this.db, 'users'); // Посилання на колекцію "users"

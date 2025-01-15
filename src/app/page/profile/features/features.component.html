@@ -1,0 +1,47 @@
+<div class="content-container pb-2">
+  <h2 class="border-bottom">Рівень завантаженості</h2>
+
+  <mat-radio-group class="radio-buttons" [(ngModel)]="employmentLevel" (change)="onLevelChange($event)">
+    <mat-radio-button *ngFor="let level of levels" [value]="level.value">
+      {{level.label}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <h2 class="border-bottom">Ваш розклад</h2>
+
+  <!-- Вибір днів тижня -->
+  <div class="timeBox" *ngFor="let day of daysOfWeek; let i = index">
+    <mat-checkbox [(ngModel)]="selectedDays[i]" [name]="'day-' + i" (change)="onDayChange(i)">
+      {{ day }}
+    </mat-checkbox>
+    <!-- Вибір часу для кожного дня -->
+    <div class="w-100" *ngIf="selectedDays[i]">
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Час від</mat-label>
+        <mat-select [(ngModel)]="startTimes[i]" name="start-time-{{ i }}" [ngModelOptions]="{ standalone: true }">
+          <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour }}:00</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-50">
+        <mat-label>Час до</mat-label>
+        <mat-select [(ngModel)]="endTimes[i]" name="end-time-{{ i }}" [ngModelOptions]="{ standalone: true }"
+          [disabled]="!startTimes[i]" (selectionChange)="onEndTimeChange(i)">
+          <mat-option *ngFor="let hour of filteredEndTimes(i)" [value]="hour">{{ hour }}:00</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="btn-group p-2">
+    <button class="btn btn-secondary" type="button" (click)="saveFeatures()">Зберегти
+      <i class="fa-regular fa-circle-check"></i></button>
+  </div>
+
+</div>

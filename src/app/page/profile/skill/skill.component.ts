@@ -6,12 +6,18 @@ import { AuthService } from '../../../services/auth.service';
 import { StatusMessageService } from '../../../services/status-message.service';
 import { services as servicesData } from '../../../data/data-our-services';
 import { tools as toolsData } from '../../../data/data-tools';
+import { animations } from '../../../interface/animation';
 
 @Component({
   selector: 'app-skill',
   templateUrl: './skill.component.html',
   styleUrls: ['../profile.component.scss'],
   standalone: false,
+  animations: [
+    animations.topOut,
+    animations.appearance,
+    animations.fadeIn,
+  ],
 })
 export class SkillComponent implements OnInit {
 
@@ -26,10 +32,13 @@ export class SkillComponent implements OnInit {
   toolsForm: FormGroup;
   autorization: boolean = false;
   userData: any;
-  tools = toolsData; // Список категорій із даних
-  private serviceSelectionCache: Record<string, boolean> = {};
+  tools = toolsData;
   photoURL: any;
   userGoogleData: any;
+  showTools: boolean = false;
+  toogleTools() {
+    this.showTools = !this.showTools;
+  }
 
   toggleToolsSelection(technology: any): void {
     this.savedTools.push({ ...technology });

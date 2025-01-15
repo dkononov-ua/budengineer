@@ -109,6 +109,17 @@ export const animations = {
     ]),
   ]),
 
+  topOut: trigger('topOut', [
+    transition('void => *', [
+      style({ transform: 'translateY(120%)', opacity: 0 }),
+      animate('1200ms ease-in-out', style({ transform: 'translateY(0)', opacity: 1 }))
+    ]),
+    transition('* => void', [
+      style({ transform: 'translateY(0)', opacity: 1 }),
+      animate('500ms ease-in-out', style({ transform: 'translateY(120%)', opacity: 0 }))
+    ]),
+  ]),
+
   top1: trigger('top1', [
     transition(':enter', [
       style({ transform: 'translateY(120%)', opacity: 0 }),

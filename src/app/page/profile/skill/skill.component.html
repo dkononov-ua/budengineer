@@ -1,11 +1,12 @@
-<div class="categories-container">
-  <mat-card-title class="t-c" *ngIf="filteredTools?.length">Володіння інструментами</mat-card-title>
+<div class="categories-container t-c">
+  <p class="t-c bold border-bottom mb-3" *ngIf="filteredTools?.length">Володіння інструментами</p>
   <p class="t-min t-c" *ngIf="filteredTools?.length">
-    Оберіть інструменти, якими володієте, та вкажіть рівень володіння, після чого натисніть кнопку "Додати" та
+    Вкажіть рівень володіння інструментами якими користуєтесь. Після чого натисніть кнопку "Додати" та
     збережіть ваш профіль.
   </p>
 
-  <div *ngIf="filteredTools?.length" class="services-list">
+
+  <div [@topOut] *ngIf="showTools && filteredTools?.length" class="services-list">
     <div *ngFor="let technology of filteredTools" class="col-lg-3 col-md-4 col-sm-6 p-2">
       <div class="card service-item">
 
@@ -24,9 +25,13 @@
       </div>
     </div>
 
-
-
   </div>
+
+  <button type="button" class="btn btn-secondary mt-4" (click)="toogleTools()">
+    <span>{{ showTools ? 'Згорнути інструменти' : 'Додати інструменти' }}
+      <i class="fa-solid" [ngClass]="showTools ? 'fa-arrow-up' : 'fa-plus'"></i>
+    </span>
+  </button>
 
   <form class="content-container w-100" [formGroup]="toolsForm" (ngSubmit)="saveTools()">
 
@@ -36,12 +41,12 @@
         <div class="list-item" *ngFor="let tool of savedTools">
           <img [src]="tool.image" [alt]="tool.name" class="tool-icon">
           <span>{{ tool.name }} - {{ tool.proficiency || 0 }}%</span>
-          <button class="btn-close" type="button" (click)="toggleToolsSelection(tools)"></button>
+          <button class="btn-close mr-2" type="button" (click)="toggleToolsSelection(tools)"></button>
         </div>
       </div>
     </div>
 
-    <div class="btn-group p-2">
+    <div class="btn-group">
       <button type="submit" class="btn btn-secondary" type="submit">Зберегти <i
           class="fa-regular fa-circle-check"></i></button>
     </div>
